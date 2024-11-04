@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-undef */
 import { Route, Routes } from "react-router-dom";
-import AuthLayout from "./components/admin-view/layout";
+import AuthLayout from "./components/auth/layout";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
 import AdminLayout from "./components/admin-view/layout";
@@ -19,46 +20,34 @@ import UnauthPage from "./pages/unauth-page";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import checkAuth  from "./store/auth-slice";
-
+import  Skeleton  from './components/ui/skeleton';
 
 
 function App() {
-  const { user, isAuthenticated, isLoading } = useSelector(
+  const { user, isAuthenticated, isLoading} = useSelector(
     (state) => state.auth
   );
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+      
+  // useEffect(()=>{
+  //   dispatch(checkAuth());
+  // },[dispatch]);
 
-  useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
-
-  if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
-
-  console.log(isLoading, user);
+  // if(isloading) return <div>Loading...</div>
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
-        <Route
-          path="/"
-          element={
-            <CheckAuth
-              isAuthenticated={isAuthenticated}
-              user={user}
-            ></CheckAuth>
-          }
-        />
-        <Route
+       <Route
           path="/auth"
           element={
             <CheckAuth isAuthenticated={isAuthenticated} user={user}>
               <AuthLayout />
             </CheckAuth>
-          }
-        >
+          } >
           <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
-        </Route>
+          </Route>
         <Route
           path="/admin"
           element={
@@ -86,10 +75,11 @@ function App() {
           <Route path="account" element={<ShoppingAccount />} />
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} /> 
       </Routes>
     </div>
   );
 }
+
 
 export default App;
