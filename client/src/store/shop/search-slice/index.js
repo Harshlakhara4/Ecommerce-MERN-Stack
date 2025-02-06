@@ -7,7 +7,7 @@ const initialState = {
   isLoading: false,
   searchResults: [],
 };
-const Base_Url = 'https://ecomerce-mern-stack-server.onrender.com';
+const Base_Url = 'https://ecommerce-mern-stack-335t.onrender.com';
 
 export const getSearchResults = createAsyncThunk(
     "order/getSearchResults",
