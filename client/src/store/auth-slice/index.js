@@ -7,7 +7,7 @@ const initialState = {
   isLoading: true,
   user: null,
 };
-const Base_Url = 'https://ecomerce-mern-stack-server.onrender.com';
+const Base_Url = 'https://ecommerce-mern-stack-335t.onrender.com';
 export const registerUser = createAsyncThunk(
   "/auth/register",
 
