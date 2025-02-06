@@ -13,10 +13,10 @@ export const registerUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/register",
+      "http://localhost:8086/api/auth/register",
       formData,
-      {
-        withCredentials: true,
+      { 
+        withCredentials: true
       }
     );
 
@@ -29,7 +29,7 @@ export const loginUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/login",
+      "http://localhost:8086/api/auth/login",
       formData,
       {
         withCredentials: true,
@@ -45,7 +45,7 @@ export const logoutUser = createAsyncThunk(
 
   async () => {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/logout",
+      "http://localhost:8086/api/auth/logout",
       {},
       {
         withCredentials: true,
@@ -56,22 +56,28 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-export const checkAuth = createAsyncThunk(
-  "/auth/checkauth",
-  async () => {
-    const response = await axios.get(
-      "http://localhost:5000/api/auth/check-auth",
-      {
-        withCredentials: true,
-        headers: {
-          'Cache-Control':
-            'no-store, no-cache, must-revalidate, proxy-revalidate',
-        },
+export const checkAuth = createAsyncThunk("/auth/checkauth", async (_, thunkAPI) => {
+  try {
+      const response = await axios.get(
+          "http://localhost:8086/api/auth/check-auth",
+          {
+              withCredentials: true,
+              headers: {
+                  "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+              },
+          }
+      );
+
+      if (!response.data.success) {
+          throw new Error("User not authenticated");
       }
-    );
-    return response.data;
+
+      return response.data;
+  } catch (error) {
+      console.error("Auth check failed:", error);
+      return thunkAPI.rejectWithValue("User not authenticated");
   }
-);
+});
 
 const authSlice = createSlice({
   name: "auth",

@@ -2,7 +2,6 @@ import CommonForm from "@/components/common/form";
 import { useToast } from "@/components/ui/use-toast";
 import { registerFormControls } from "@/config";
 import { registerUser } from "@/store/auth-slice";
-import { HeartHandshake } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,6 +14,7 @@ const initialState = {
 
 function AuthRegister() {
   const [formData, setFormData] = useState(initialState);
+  console.log(formData,"formdata in register component");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -26,7 +26,6 @@ function AuthRegister() {
         toast({
           title: data?.payload?.message,
         });
-        console.log(Harsh)
         navigate("/auth/login");
       } else {
         toast({
@@ -37,7 +36,6 @@ function AuthRegister() {
     });
   }
 
-  console.log(formData);
 
   return (
     <div className="mx-auto w-full max-w-md space-y-6">

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-no-undef */
+
 import { Route, Routes } from "react-router-dom";
 import AuthLayout from "./components/auth/layout";
 import AuthLogin from "./pages/auth/login";
@@ -15,25 +14,29 @@ import ShoppingHome from "./pages/shopping-view/home";
 import ShoppingListing from "./pages/shopping-view/listing";
 import ShoppingCheckout from "./pages/shopping-view/checkout";
 import ShoppingAccount from "./pages/shopping-view/account";
-import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import checkAuth  from "./store/auth-slice";
-import  Skeleton  from './components/ui/skeleton';
+import { checkAuth }  from "./store/auth-slice";
+import CheckAuth from "./components/common/check-auth";
+import PaypalReturnPage from './pages/shopping-view/paypal-return';
+import PaymentSuccessPage from './pages/shopping-view/payment-success';
+import SearchProducts from './pages/shopping-view/search';
+import Skeleton from "./components/ui/skeleton";
 
 
 function App() {
   const { user, isAuthenticated, isLoading} = useSelector(
     (state) => state.auth
   );
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
       
-  // useEffect(()=>{
-  //   dispatch(checkAuth());
-  // },[dispatch]);
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
-  // if(isloading) return <div>Loading...</div>
+
+  if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
@@ -44,7 +47,8 @@ function App() {
             <CheckAuth isAuthenticated={isAuthenticated} user={user}>
               <AuthLayout />
             </CheckAuth>
-          } >
+          } 
+          >
           <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
           </Route>
@@ -64,15 +68,18 @@ function App() {
         <Route
           path="/shop"
           element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+             <CheckAuth isAuthenticated={isAuthenticated} user={user}>
               <ShoppingLayout />
-            </CheckAuth>
-          }
+             </CheckAuth>
+            }
         >
           <Route path="home" element={<ShoppingHome />} />
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="account" element={<ShoppingAccount />} />
+          <Route path="paypal-return" element={<PaypalReturnPage />} />
+          <Route path="payment-success" element={<PaymentSuccessPage />} />
+          <Route path="search" element={<SearchProducts />} />
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} /> 
