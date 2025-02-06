@@ -24,13 +24,17 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(error));
 
+const allowedOrigins = [
+  "http://localhost:5173", // Local development
+  "https://ecommerce-mern-stack-ten.vercel.app", // Vercel frontend
+];
 
   const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "https://ecommerce-mern-stack-ten.vercel.app",
+    origin: allowedOrigins,
     method: ["GET", "POST", "DELETE", "PUT"],
     allowedHEaders: [
       "Content-Type",
