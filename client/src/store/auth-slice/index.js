@@ -7,13 +7,13 @@ const initialState = {
   isLoading: true,
   user: null,
 };
-
+const Base_Url = 'https://ecomerce-mern-stack-server.onrender.com';
 export const registerUser = createAsyncThunk(
   "/auth/register",
 
   async (formData) => {
     const response = await axios.post(
-      "http://localhost:8086/api/auth/register",
+      `${Base_Url}/api/auth/register`,
       formData,
       { 
         withCredentials: true
@@ -29,7 +29,7 @@ export const loginUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "http://localhost:8086/api/auth/login",
+      `${Base_Url}/api/auth/login`,
       formData,
       {
         withCredentials: true,
@@ -45,7 +45,7 @@ export const logoutUser = createAsyncThunk(
 
   async () => {
     const response = await axios.post(
-      "http://localhost:8086/api/auth/logout",
+      `${Base_Url}/api/auth/logout`,
       {},
       {
         withCredentials: true,
@@ -67,6 +67,7 @@ export const checkAuth = createAsyncThunk("/auth/checkauth", async (_, thunkAPI)
               },
           }
       );
+      
 
       if (!response.data.success) {
           throw new Error("User not authenticated");

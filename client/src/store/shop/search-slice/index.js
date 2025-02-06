@@ -7,12 +7,13 @@ const initialState = {
   isLoading: false,
   searchResults: [],
 };
+const Base_Url = 'https://ecomerce-mern-stack-server.onrender.com';
 
 export const getSearchResults = createAsyncThunk(
     "order/getSearchResults",
     async (keyword) => {
         const response = await axios.get(
-            `http://localhost:8086/api/shop/search/${keyword}`
+            `${Base_Url}/api/shop/search/${keyword}`
         );
 
         return response.data;

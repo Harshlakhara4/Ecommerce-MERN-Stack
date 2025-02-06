@@ -7,11 +7,14 @@ const initialState = {
     featureImageList: [],
 };
 
+const Base_Url = 'https://ecomerce-mern-stack-server.onrender.com';
+
+
 export const getFeatureImages = createAsyncThunk(
     "order/getFeatureImages",
     async () => {
         const response = await axios.get(
-            `http://localhost:8086/api/common/feature/get`
+            `${Base_Url}/api/common/feature/get`
         );
 
         return response.data;
@@ -22,7 +25,7 @@ export const addFeatureImage = createAsyncThunk(
     "order/addFeatureImages",
     async (image) => {
         const response = await axios.post(
-             `http://localhost:8086/api/common/feature/add`,
+             `${Base_Url}/api/common/feature/add`,
             { image }
         );
 

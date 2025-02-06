@@ -5,12 +5,13 @@ const initialState = {
   isLoading: false,
   reviews: [],
 };
+const Base_Url = 'https://ecomerce-mern-stack-server.onrender.com';
 
 export const addReview = createAsyncThunk(
   "/order/addReview",
   async (formdata) => {
     const response = await axios.post(
-      `http://localhost:8086/api/shop/review/add`,
+      `${Base_Url}/api/shop/review/add`,
       formdata
     );
 
@@ -20,7 +21,7 @@ export const addReview = createAsyncThunk(
 
 export const getReviews = createAsyncThunk("/order/getReviews", async (id) => {
   const response = await axios.get(
-    `http://localhost:8086/api/shop/review/${id}`
+    `${Base_Url}/api/shop/review/${id}`
   );
 
   return response.data;

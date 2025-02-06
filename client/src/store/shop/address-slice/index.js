@@ -9,12 +9,15 @@ const initialState = {
     addressList: [],
 };
 
+const Base_Url = 'https://ecomerce-mern-stack-server.onrender.com';
+
+
 export const addNewAddress = createAsyncThunk(
     "/addresses/addNewAddress",
     async (formData) => {
         console.group(formData,"data of address")
         const response = await axios.post(
-            "http://localhost:8086/api/shop/address/add",
+            `${Base_Url}/api/shop/address/add`,
             formData,
         );
 
@@ -26,7 +29,7 @@ export const fetchAllAddresses = createAsyncThunk(
     "/addresses/fetchAllAddresses",
     async (userId) => {
         const response = await axios.get(
-            `http://localhost:8086/api/shop/address/get/${userId}`
+            `${Base_Url}/api/shop/address/get/${userId}`
         );
         console.log(response.data);
 
@@ -38,7 +41,7 @@ export const editAddress = createAsyncThunk(
     "/addresses/editAddress",
     async ({ userId, addressId, formData }) => {
         const response = await axios.put(
-            `http://localhost:8086/api/shop/address/update/${userId}/${addressId}`,
+            `${Base_Url}/api/shop/address/update/${userId}/${addressId}`,
             formData
         );
 
@@ -50,7 +53,7 @@ export const deleteAddress = createAsyncThunk(
     "/addresses/deleteAddress",
     async ({ userId, addressId }) => {
       const response = await axios.delete(
-        `http://localhost:8086/api/shop/address/delete/${userId}/${addressId}`
+        `${Base_Url}/api/shop/address/delete/${userId}/${addressId}`
       );
   
       return response.data;
