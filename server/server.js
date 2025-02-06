@@ -31,21 +31,20 @@ const allowedOrigins = [
 
   const app = express();
 const PORT = process.env.PORT || 5000;
-
-app.use(
-  cors({
-    origin: allowedOrigins,
-    method: ["GET", "POST", "DELETE", "PUT"],
-    allowedHEaders: [
+const corsOptions = {
+  origin: 'https://ecommerce-mern-stack-teal.vercel.app', // Allow only this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+   allowedHEaders: [
       "Content-Type",
       "Authorization",
       "Cache-Control",
       "Expires",
       "Pragma",
-    ],
-    credentials: true,
-  })
-);
+    ], // Allowed headers
+  credentials: true, // Allow credentials (cookies, authorization headers)
+};
+
+app.use(cors(corsOptions));
 
 
 app.use(cookieParser());
