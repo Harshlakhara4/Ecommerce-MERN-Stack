@@ -32,20 +32,8 @@ const allowedOrigins = [
   const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: "*",
-    method: ["GET", "POST", "DELETE", "PUT"],
-    allowedHEaders: [
-      "Content-Type",
-      "Authorization",
-      "Cache-Control",
-      "Expires",
-      "Pragma",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors()); // This will allow requests from ANY origin
+
 
 app.use(cookieParser());
 app.use(express.json());
