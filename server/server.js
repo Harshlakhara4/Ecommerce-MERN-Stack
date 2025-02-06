@@ -26,7 +26,7 @@ mongoose
 
 const allowedOrigins = [
   "http://localhost:5173", // Local development
-  "https://ecommerce-mern-stack-ten.vercel.app", // Vercel frontend
+  "https://ecommerce-mern-stack-teal.vercel.app", // Vercel frontend
 ];
 
   const app = express();
