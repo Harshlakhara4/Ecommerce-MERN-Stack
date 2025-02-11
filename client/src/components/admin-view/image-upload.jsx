@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 import axios from "axios";
 import Skeleton from "../ui/skeleton";
 
-
+const Base_Url = 'https://ecommerce-mern-stack-335t.onrender.com';
 function ProductImageUpload({
   imageFile,
   setImageFile,
@@ -52,7 +52,7 @@ function ProductImageUpload({
     const data = new FormData();
     data.append("my_file", imageFile);
     const response = await axios.post(
-      "http://localhost:8086/api/admin/products/upload-image",
+      `${Base_Url}api/admin/products/upload-image`,
       data
     );
     console.log(response, "response");
