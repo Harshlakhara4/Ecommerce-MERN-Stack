@@ -149,11 +149,11 @@ function AuthLogin() {
       />
       {/* Guest Login Button */}
       <button
-        onClick={handleGuestLogin}
-        className="w-full px-4 py-2 text-white bg-gray-600 rounded-md hover:bg-gray-700 transition"
-      >
+       onClick={handleGuestLogin}
+       className="w-full relative px-4 py-2 text-blue-600 rounded-md transition hover:text-blue-800 before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue-600 before:transition-all before:duration-300 hover:before:w-full"
+       >
         Login as Guest
-      </button>
+       </button>
     </div>
   );
 }
