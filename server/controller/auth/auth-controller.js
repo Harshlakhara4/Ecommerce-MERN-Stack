@@ -69,10 +69,10 @@ const loginUser = async (req, res) => {
             { expiresIn: "60min" }
         );
 
-        res.cookie("token", token, {
-            httpOnly: true, 
-            secure: process.env.NODE_ENV === "production", 
-            sameSite: "lax", 
+           res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", // Only secure in production
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Required for cross-origin auth
         });
         
         res.status(200).json({
