@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
            res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production", // Only secure in production
-            sameSite: process.env.NODE_ENV === "production" : "Lax", // Required for cross-origin auth
+            sameSite : "Lax", // Required for cross-origin auth
         });
         
         res.status(200).json({
