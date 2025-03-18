@@ -32,10 +32,8 @@ const allowedOrigins = [
   "https://ecommerce-mern-stack-teal.vercel.app", // Vercel frontend
 ];
 
-const server = http.createServer(app);
-
-
   const app = express();
+const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: 'https://ecommerce-mern-stack-teal.vercel.app', // Allow only this origin
