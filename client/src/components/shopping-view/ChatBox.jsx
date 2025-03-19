@@ -77,7 +77,7 @@ useEffect(() => {
 
       {/* Chat Box - Bigger Size (Left Center) */}
       {isOpen && (
-        <div className="fixed left-10 top-1/2 transform -translate-y-1/2 w-96 bg-white border rounded-lg shadow-lg p-4">
+        <div className="fixed left-10 top-1/2 transform -translate-y-1/2 w-96 z-[9999] bg-white border rounded-lg shadow-lg p-4">
           {/* Chat Header */}
           <div className="flex justify-between items-center border-b pb-2">
             <h3 className="text-lg font-semibold">Chat with us</h3>
