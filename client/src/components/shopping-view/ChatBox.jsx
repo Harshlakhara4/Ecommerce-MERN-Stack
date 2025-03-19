@@ -13,15 +13,28 @@ function ChatBox() {
   const [loading, setLoading] = useState(false);
 
   // Listen for AI messages
-  useEffect(() => {
-    socket.on("receiveMessage", (newMessage) => {
-      setMessages((prev) => [...prev, newMessage]);
-    });
+useEffect(() => {
+  console.log("Connecting to WebSocket...");
+  socket.on("connect", () => {
+    console.log("✅ WebSocket connected:", socket.id);
+  });
 
-    return () => {
-      socket.off("receiveMessage");
-    };
-  }, []);
+  socket.on("disconnect", () => {
+    console.log("❌ WebSocket disconnected");
+  });
+
+  socket.on("receiveMessage", (newMessage) => {
+    console.log("📩 Message received:", newMessage);
+    setMessages((prev) => [...prev, newMessage]);
+  });
+
+  return () => {
+    socket.off("receiveMessage");
+    socket.off("connect");
+    socket.off("disconnect");
+  };
+}, []);
+
 
   async function sendMessage() {
     if (!message.trim()) return;
