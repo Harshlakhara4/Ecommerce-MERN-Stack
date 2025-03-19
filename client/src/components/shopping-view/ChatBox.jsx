@@ -72,61 +72,60 @@ console.log("Current isOpen state:", isOpen);
   console.log("harsh");
 
   return (
-     <h1 style={{ color: "red", fontSize: "50px" }}>ChatBox Rendered</h1>;
-    // <div>
-    //   {/* Chat Toggle Button - Left Center */}
-    //   <button
-    //     className="fixed left-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2"
-    //     onClick={() => setIsOpen(!isOpen)}
-    //   >
-    //     💬 Chat with Us
-    //   </button>
+    <div>
+      {/* Chat Toggle Button - Left Center */}
+      <button
+        className="fixed left-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        💬 Chat with Us
+      </button>
 
-    //   {/* Chat Box - Bigger Size (Left Center) */}
-    //   {isOpen && (
-    //     <div className="fixed left-10 top-1/2 transform -translate-y-1/2 w-96 z-[9999] bg-white border rounded-lg shadow-lg p-4">
-    //       {/* Chat Header */}
-    //       <div className="flex justify-between items-center border-b pb-2">
-    //         <h3 className="text-lg font-semibold">Chat with us</h3>
-    //         <X className="cursor-pointer" onClick={() => setIsOpen(false)} />
-    //       </div>
+      {/* Chat Box - Bigger Size (Left Center) */}
+      {isOpen && (
+        <div className="fixed left-10 top-1/2 transform -translate-y-1/2 w-96 z-[9999] bg-white border rounded-lg shadow-lg p-4">
+          {/* Chat Header */}
+          <div className="flex justify-between items-center border-b pb-2">
+            <h3 className="text-lg font-semibold">Chat with us</h3>
+            <X className="cursor-pointer" onClick={() => setIsOpen(false)} />
+          </div>
 
-    //       {/* Message Display (Increased Height) */}
-    //       <div className="h-48 overflow-y-auto mt-2 p-2 space-y-2 bg-gray-100 rounded-md">
-    //         {messages.length === 0 ? (
-    //           <p className="text-gray-500 text-center">Say something to start chatting!</p>
-    //         ) : (
-    //           messages.map((msg, index) => (
-    //             <div
-    //               key={index}
-    //               className={`p-2 rounded-lg ${msg.sender === "user" ? "bg-blue-200 text-right" : "bg-gray-200 text-left"}`}
-    //             >
-    //               <strong>{msg.sender === "user" ? "" : ""}:</strong> {msg.text}
-    //             </div>
-    //           ))
-    //         )}
-    //         {loading && <p className="text-gray-500">Typing...</p>}
-    //       </div>
+          {/* Message Display (Increased Height) */}
+          <div className="h-48 overflow-y-auto mt-2 p-2 space-y-2 bg-gray-100 rounded-md">
+            {messages.length === 0 ? (
+              <p className="text-gray-500 text-center">Say something to start chatting!</p>
+            ) : (
+              messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`p-2 rounded-lg ${msg.sender === "user" ? "bg-blue-200 text-right" : "bg-gray-200 text-left"}`}
+                >
+                  <strong>{msg.sender === "user" ? "" : ""}:</strong> {msg.text}
+                </div>
+              ))
+            )}
+            {loading && <p className="text-gray-500">Typing...</p>}
+          </div>
 
-    //       {/* Message Input */}
-    //       <div className="flex mt-2 border-t pt-2">
-    //         <input
-    //           type="text"
-    //           className="flex-1 border p-2 rounded-lg"
-    //           placeholder="Type your message..."
-    //           value={message}
-    //           onChange={(e) => setMessage(e.target.value)}
-    //         />
-    //         <button
-    //           className="ml-2 bg-blue-500 text-white p-2 rounded-lg"
-    //           onClick={sendMessage}
-    //         >
-    //           <Send size={18} />
-    //         </button>
-    //       </div>
-    //     </div>
-    //   )}
-    // </div>
+          {/* Message Input */}
+          <div className="flex mt-2 border-t pt-2">
+            <input
+              type="text"
+              className="flex-1 border p-2 rounded-lg"
+              placeholder="Type your message..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button
+              className="ml-2 bg-blue-500 text-white p-2 rounded-lg"
+              onClick={sendMessage}
+            >
+              <Send size={18} />
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
