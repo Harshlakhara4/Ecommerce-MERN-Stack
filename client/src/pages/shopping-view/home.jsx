@@ -270,8 +270,8 @@ import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { useToast } from "@/components/ui/use-toast";
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { getFeatureImages } from "@/store/common-slice";
-import ChatBox from './../../components/shopping-view/ChatBox';
-// import ChatBox  from '@/components/shopping-view/ChatBox';
+// import ChatBox from './../../components/shopping-view/ChatBox';
+import { ChatBox }  from '@/components/shopping-view/ChatBox';
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
