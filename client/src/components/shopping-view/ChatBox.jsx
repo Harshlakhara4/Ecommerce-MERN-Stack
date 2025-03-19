@@ -9,6 +9,7 @@ const socket = io("https://ecommerce-mern-stack-335t.onrender.com", {
 });
 
 
+
 function ChatBox() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -17,26 +18,20 @@ function ChatBox() {
 
   // Listen for AI messages
 useEffect(() => {
-  console.log("Connecting to WebSocket...");
   socket.on("connect", () => {
-    console.log("✅ WebSocket connected:", socket.id);
+    console.log("✅ WebSocket Connected:", socket.id);
   });
 
   socket.on("disconnect", () => {
-    console.log("❌ WebSocket disconnected");
-  });
-
-  socket.on("receiveMessage", (newMessage) => {
-    console.log("📩 Message received:", newMessage);
-    setMessages((prev) => [...prev, newMessage]);
+    console.log("❌ WebSocket Disconnected");
   });
 
   return () => {
-    socket.off("receiveMessage");
     socket.off("connect");
     socket.off("disconnect");
   };
 }, []);
+
 
 
   async function sendMessage() {
