@@ -26,11 +26,18 @@ useEffect(() => {
     console.log("❌ WebSocket Disconnected");
   });
 
+  socket.on("receiveMessage", (newMessage) => {
+    console.log("📩 Received Message:", newMessage);
+    setMessages((prev) => [...prev, newMessage]); // Update chat UI
+  });
+
   return () => {
     socket.off("connect");
     socket.off("disconnect");
+    socket.off("receiveMessage");
   };
 }, []);
+
 
 
 
