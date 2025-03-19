@@ -143,7 +143,7 @@ function ChatBox() {
     console.log("myFunction is running!");
   }
 
-  return <h1>ChatBox Component</h1>;
+  return <h1 style={{ color: "red", fontSize: "50px" }}>ChatBox Rendered</h1>;
 }
 
 export default ChatBox;
