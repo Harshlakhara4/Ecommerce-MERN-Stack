@@ -4,7 +4,10 @@ import axios from "axios";
 import { Send, X } from "lucide-react";
 
 // Connect to WebSocket server
-const socket = io("https://ecommerce-mern-stack-335t.onrender.com");
+const socket = io("https://ecommerce-mern-stack-335t.onrender.com", {
+  transports: ["websocket"],
+});
+
 
 function ChatBox() {
   const [messages, setMessages] = useState([]);
