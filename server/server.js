@@ -51,8 +51,12 @@ const corsOptions = {
 
 const io = new Server(server, {
   cors: {
-    origin: "https://ecommerce-mern-stack-teal.vercel.app", 
+    origin: [
+      "http://localhost:5173", 
+      "https://ecommerce-mern-stack-teal.vercel.app"
+    ],
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
