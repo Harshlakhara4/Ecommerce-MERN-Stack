@@ -72,6 +72,7 @@ console.log("Current isOpen state:", isOpen);
   console.log("harsh");
 
   return (
+     <h1 style={{ color: "red", fontSize: "50px" }}>ChatBox Rendered</h1>;
     <div>
       {/* Chat Toggle Button - Left Center */}
       <button
