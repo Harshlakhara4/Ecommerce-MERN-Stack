@@ -65,6 +65,8 @@ useEffect(() => {
     }
   }
 
+  console.log("harsh");
+
   return (
     <div>
       {/* Chat Toggle Button - Left Center */}
