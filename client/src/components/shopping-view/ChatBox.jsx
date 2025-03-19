@@ -39,6 +39,9 @@ useEffect(() => {
 }, []);
 
 
+  useEffect(() => {
+    console.log(`ChatBox is now ${isOpen ? "OPEN" : "CLOSED"}`);
+  }, [isOpen]);
 
 
   async function sendMessage() {
