@@ -464,8 +464,8 @@ function ShoppingHome() {
         productDetails={productDetails}
       />
 
-{/*       <ChatBox />  */}
-      <div>HEllo chatbox</div>
+      <ChatBox /> 
+     
     </div>
   );
 }
