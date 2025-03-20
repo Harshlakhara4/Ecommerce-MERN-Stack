@@ -72,18 +72,20 @@ console.log("Current isOpen state:", isOpen);
   console.log("harsh");
 
   return (
- <div>
+  <div>
       {/* Chat Toggle Button - Fixed on the Left Side */}
       <button
-        className="fixed left-4 bottom-16 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-blue-700 transition-all duration-300"
+        className="fixed left-4 bottom-16 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-blue-700 transition-all duration-300 z-[99999]"
         onClick={() => setIsOpen(!isOpen)}
       >
         💬 Chat with Us
       </button>
 
-      {/* Chat Box - Left Side Fixed */}
+      {/* Chat Box - Left Side Fixed & Always on Top */}
       {isOpen && (
-        <div className="fixed left-4 bottom-24 w-80 z-[9999] bg-white border rounded-lg shadow-xl p-4">
+        <div
+          className="fixed left-4 bottom-24 w-80 z-[99999] bg-white border rounded-lg shadow-xl p-4 pointer-events-auto"
+        >
           {/* Chat Header */}
           <div className="flex justify-between items-center border-b pb-2">
             <h3 className="text-lg font-semibold">Chat with us</h3>
