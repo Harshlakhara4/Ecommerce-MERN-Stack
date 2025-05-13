@@ -4,11 +4,7 @@ import axios from "axios";
 import { Send, X } from "lucide-react";
 
 // Connect to WebSocket server
-const socket = io("https://ecommerce-mern-stack-335t.onrender.com", {
-  transports: ["websocket"],
-});
-
-
+const socket = io("http://localhost:8086");
 
 function ChatBox() {
   const [messages, setMessages] = useState([]);
@@ -17,33 +13,15 @@ function ChatBox() {
   const [loading, setLoading] = useState(false);
 
   // Listen for AI messages
-useEffect(() => {
-  socket.on("connect", () => {
-    console.log("✅ WebSocket Connected:", socket.id);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("❌ WebSocket Disconnected");
-  });
-
-  socket.on("receiveMessage", (newMessage) => {
-    console.log("📩 Received Message:", newMessage);
-    setMessages((prev) => [...prev, newMessage]); // Update chat UI
-  });
-
-  return () => {
-    socket.off("connect");
-    socket.off("disconnect");
-    socket.off("receiveMessage");
-  };
-}, []);
-
-
   useEffect(() => {
-    console.log(`ChatBox is now ${isOpen ? "OPEN" : "CLOSED"}`);
-  }, [isOpen]);
+    socket.on("receiveMessage", (newMessage) => {
+      setMessages((prev) => [...prev, newMessage]);
+    });
 
-console.log("Current isOpen state:", isOpen);
+    return () => {
+      socket.off("receiveMessage");
+    };
+  }, []);
 
   async function sendMessage() {
     if (!message.trim()) return;
@@ -54,7 +32,7 @@ console.log("Current isOpen state:", isOpen);
     setLoading(true);
 
     try {
-      const { data } = await axios.post("https://ecommerce-mern-stack-335t.onrender.com/api/chat/message", {
+      const { data } = await axios.post("http://localhost:8086/api/chat/message", {
         message,
       });
 
@@ -69,31 +47,27 @@ console.log("Current isOpen state:", isOpen);
     }
   }
 
-  console.log("harsh");
-
   return (
-  <div>
-      {/* Chat Toggle Button - Fixed on the Left Side */}
+    <div>
+      {/* Chat Toggle Button - Left Center */}
       <button
-        className="fixed left-4 bottom-16 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-blue-700 transition-all duration-300 z-[99999]"
+        className="fixed left-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         💬 Chat with Us
       </button>
 
-      {/* Chat Box - Left Side Fixed & Always on Top */}
+      {/* Chat Box - Bigger Size (Left Center) */}
       {isOpen && (
-        <div
-          className="fixed left-4 bottom-24 w-80 z-[99999] bg-white border rounded-lg shadow-xl p-4 pointer-events-auto"
-        >
+        <div className="fixed left-10 top-1/2 transform -translate-y-1/2 w-96 bg-white border rounded-lg shadow-lg p-4">
           {/* Chat Header */}
           <div className="flex justify-between items-center border-b pb-2">
             <h3 className="text-lg font-semibold">Chat with us</h3>
-            <X className="cursor-pointer text-gray-500 hover:text-black" onClick={() => setIsOpen(false)} />
+            <X className="cursor-pointer" onClick={() => setIsOpen(false)} />
           </div>
 
-          {/* Message Display */}
-          <div className="h-60 overflow-y-auto mt-2 p-2 space-y-2 bg-gray-100 rounded-md">
+          {/* Message Display (Increased Height) */}
+          <div className="h-48 overflow-y-auto mt-2 p-2 space-y-2 bg-gray-100 rounded-md">
             {messages.length === 0 ? (
               <p className="text-gray-500 text-center">Say something to start chatting!</p>
             ) : (
@@ -102,7 +76,7 @@ console.log("Current isOpen state:", isOpen);
                   key={index}
                   className={`p-2 rounded-lg ${msg.sender === "user" ? "bg-blue-200 text-right" : "bg-gray-200 text-left"}`}
                 >
-                  {msg.text}
+                  <strong>{msg.sender === "user" ? "" : ""}:</strong> {msg.text}
                 </div>
               ))
             )}
@@ -119,7 +93,7 @@ console.log("Current isOpen state:", isOpen);
               onChange={(e) => setMessage(e.target.value)}
             />
             <button
-              className="ml-2 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
+              className="ml-2 bg-blue-500 text-white p-2 rounded-lg"
               onClick={sendMessage}
             >
               <Send size={18} />
