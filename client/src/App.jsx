@@ -24,8 +24,6 @@ import PaymentSuccessPage from './pages/shopping-view/payment-success';
 import SearchProducts from './pages/shopping-view/search';
 import Skeleton from "./components/ui/skeleton";
 
-import ChatBox  from '@/components/shopping-view/ChatBox';
-
 function App() {
   const { user, isAuthenticated, isLoading} = useSelector(
     (state) => state.auth
@@ -41,7 +39,6 @@ function App() {
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
-      
       <Routes>
        <Route
           path="/auth"
@@ -75,7 +72,7 @@ function App() {
              </CheckAuth>
             }
         >
-          <Route path="home" element={<ChatBox />} />
+          <Route path="home" element={<ShoppingHome />} />
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="account" element={<ShoppingAccount />} />
