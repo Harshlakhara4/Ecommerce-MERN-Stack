@@ -465,7 +465,7 @@ function ShoppingHome() {
         productDetails={productDetails}
       />
 
-     
+     <ChatBox />
     </div>
   );
 }
