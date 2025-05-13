@@ -36,7 +36,7 @@ const allowedOrigins = [
 const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 const corsOptions = {
-  origin: 'https://ecommerce-mern-stack-teal.vercel.app', // Allow only this origin
+  origin: 'https://ecommerce-mern-stack-harshlakhara4s-projects.vercel.app/', // Allow only this origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
    allowedHeaders: [
       "Content-Type",
@@ -51,7 +51,7 @@ const corsOptions = {
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://ecommerce-mern-stack-teal.vercel.app',
+    origin: 'https://ecommerce-mern-stack-harshlakhara4s-projects.vercel.app/',
     methods: ["GET", "POST"],
     credentials: true,
   },
