@@ -51,7 +51,7 @@ const corsOptions = {
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://ecommerce-mern-stack-harshlakhara4s-projects.vercel.app/',
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
