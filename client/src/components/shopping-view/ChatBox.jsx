@@ -46,6 +46,9 @@ function ChatBox() {
       setLoading(false);
     }
   }
+   useEffect(() => {
+    console.log("Rendered the ChatBox");
+  }, []); 
 
   return (
     <div>
