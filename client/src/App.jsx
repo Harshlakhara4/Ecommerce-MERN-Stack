@@ -24,6 +24,7 @@ import PaymentSuccessPage from './pages/shopping-view/payment-success';
 import SearchProducts from './pages/shopping-view/search';
 import Skeleton from "./components/ui/skeleton";
 
+import ChatBox  from '@/components/shopping-view/ChatBox';
 
 function App() {
   const { user, isAuthenticated, isLoading} = useSelector(
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
+      <ChatBox />
       <Routes>
        <Route
           path="/auth"
